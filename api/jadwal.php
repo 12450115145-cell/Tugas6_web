@@ -1,12 +1,13 @@
 <?php
 include "../koneksi.php";
+include "auth.php";
 
 $method = $_SERVER['REQUEST_METHOD'];
 $input = json_decode(file_get_contents('php://input'), true);
 
 switch ($method) {
     case 'GET':
-        // ?aksi=statistik, tampilkan datanya
+        // aksi=statistik, tampilkan datanya
         $aksi = isset($_GET['aksi']) ? $_GET['aksi'] : '';
         if ($aksi == 'statistik') {
             $query_total = mysqli_query($koneksi, "SELECT COUNT(*) as total_jadwal FROM jadwal");
